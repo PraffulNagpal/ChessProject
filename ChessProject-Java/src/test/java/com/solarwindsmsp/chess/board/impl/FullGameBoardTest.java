@@ -1,4 +1,4 @@
-package com.solarwindsmsp.chess;
+package com.solarwindsmsp.chess.board.impl;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,15 +9,24 @@ import com.solarwindsmsp.chess.board.impl.FullGameBoard;
 import com.solarwindsmsp.chess.piece.attribute.PieceColor;
 import com.solarwindsmsp.chess.piece.impl.Pawn;
 
+/**
+ *Tests for class {@link FullGameBoard}
+ */
 public class FullGameBoardTest extends BaseChessBoardTest{
 
 
+	/**
+	 * Setup for tests
+	 */
 	@Before
 	public void setUp() throws Exception {
 		testSubject = new FullGameBoard();
 	}
 
 	
+	/**
+	 * Tests add piece happy flow
+	 */
 	@Test
 	public void testAddPieceSuccess() {
 		Pawn firstPawn = new Pawn(testSubject, PieceColor.BLACK);
@@ -25,14 +34,13 @@ public class FullGameBoardTest extends BaseChessBoardTest{
 		assertEquals(6,firstPawn.getLocation().getxCoordinate());
 		assertEquals(5,firstPawn.getLocation().getyCoordinate());
 	}
-	
+
+	/**
+	 * Tests add piece invalid init location 
+	 */
 	@Test(expected=IllegalArgumentException.class)
-	public void testAddPieceOutsideOfInitialLocationsBlack() {
+	public void testAddPieceOutsideOfInitialLocation() {
 		testSubject.addPiece(new Pawn(testSubject, PieceColor.BLACK), 5, 5);
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
-	public void testAddPieceOutsideOfInitialLocationsWhite() {
-		testSubject.addPiece(new Pawn(testSubject, PieceColor.WHITE), 5, 5);
-	}
 }

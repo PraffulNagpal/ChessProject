@@ -1,4 +1,4 @@
-package com.solarwindsmsp.chess;
+package com.solarwindsmsp.chess.piece.impl;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -58,10 +58,20 @@ public class Location {
 		return true;
 	}
 
+	/**
+	 * Gets xCoordinate of location
+	 * 
+	 * @return {@link #xCoordinate}
+	 */
 	public int getxCoordinate() {
 		return xCoordinate;
 	}
 
+	/**
+	 * Gets yCoordinate of location
+	 * 
+	 * @return {@link #yCoordinate}
+	 */
 	public int getyCoordinate() {
 		return yCoordinate;
 	}

@@ -1,4 +1,4 @@
-package com.solarwindsmsp.chess;
+package com.solarwindsmsp.chess.board.impl;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,15 +9,24 @@ import com.solarwindsmsp.chess.board.impl.ReenactBoard;
 import com.solarwindsmsp.chess.piece.attribute.PieceColor;
 import com.solarwindsmsp.chess.piece.impl.Pawn;
 
+/**
+ *Tests for class {@link ReenactBoard}
+ */
 public class ReenactBoardTest extends BaseChessBoardTest {
 	
 
+	/**
+	 * Setup for tests
+	 */
 	@Before
 	public void setUp() throws Exception {
 		testSubject = new ReenactBoard();
 	}
 	
 
+	/**
+	 * Add piece happy flow
+	 */
 	@Test
 	public void testAddPieceSuccess() {
 		Pawn firstPawn = new Pawn(testSubject, PieceColor.BLACK);
@@ -26,21 +35,16 @@ public class ReenactBoardTest extends BaseChessBoardTest {
 		assertEquals(5,firstPawn.getLocation().getyCoordinate());
 	}
 	
+	/**
+	 * Adds piece at not init location
+	 */
 	@Test
-	public void testAddPieceOutsideOfInitialLocationsBlack() {
+	public void testAddPieceOutsideOfInitialLocation() {
 		Pawn firstPawn = new Pawn(testSubject, PieceColor.BLACK);
 		testSubject.addPiece(firstPawn, 5, 5);
 		assertEquals(5,firstPawn.getLocation().getxCoordinate());
 		assertEquals(5,firstPawn.getLocation().getyCoordinate());
 	}
 	
-	@Test
-	public void testAddPieceOutsideOfInitialLocationsWhite() {
-		Pawn firstPawn = new Pawn(testSubject, PieceColor.WHITE);
-		testSubject.addPiece(firstPawn, 5, 5);
-		assertEquals(5,firstPawn.getLocation().getxCoordinate());
-		assertEquals(5,firstPawn.getLocation().getyCoordinate());
-	}
-
 
 }
