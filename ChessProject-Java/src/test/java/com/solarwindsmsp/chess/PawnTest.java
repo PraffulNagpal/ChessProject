@@ -3,13 +3,13 @@ package com.solarwindsmsp.chess;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.solarwindsmsp.chess.board.FullGameBoard;
 import com.solarwindsmsp.chess.board.IChessBoard;
-import com.solarwindsmsp.chess.board.Location;
+import com.solarwindsmsp.chess.board.attribute.Location;
+import com.solarwindsmsp.chess.board.impl.FullGameBoard;
 import com.solarwindsmsp.chess.exception.InvalidMoveException;
-import com.solarwindsmsp.chess.piece.MovementType;
-import com.solarwindsmsp.chess.piece.Pawn;
-import com.solarwindsmsp.chess.piece.PieceColor;
+import com.solarwindsmsp.chess.piece.attribute.MovementType;
+import com.solarwindsmsp.chess.piece.attribute.PieceColor;
+import com.solarwindsmsp.chess.piece.impl.Pawn;
 
 import org.junit.Assert;
 
@@ -74,13 +74,13 @@ public class PawnTest {
 	@Test
 	public void testXCoordinateAreSet() {
 		testSubject.setLocation(new Location(6, 7));
-		assertEquals(6, testSubject.getXCoordinate());
+		assertEquals(6, testSubject.getLocation().getxCoordinate());
 	}
 
 	@Test
 	public void testYCoordinateAreSet() {
 		testSubject.setLocation(new Location(6, 7));
-		assertEquals(7, testSubject.getYCoordinate());
+		assertEquals(7, testSubject.getLocation().getyCoordinate());
 	}
 
 	@Test
@@ -99,8 +99,8 @@ public class PawnTest {
 	public void testValidSingleMove() {
 		chessBoard.addPiece(testSubject, 6, 6);
 		testSubject.move(MovementType.MOVE, 5, 6);
-		assertEquals(6, testSubject.getYCoordinate());
-		assertEquals(5, testSubject.getXCoordinate());
+		assertEquals(6, testSubject.getLocation().getyCoordinate());
+		assertEquals(5, testSubject.getLocation().getxCoordinate());
 	}
 
 	@Test(expected = InvalidMoveException.class)
@@ -113,16 +113,16 @@ public class PawnTest {
 	public void testValidDoubleMove() {
 		chessBoard.addPiece(testSubject, 6, 6);
 		testSubject.move(MovementType.MOVE, 4, 6);
-		assertEquals(4, testSubject.getXCoordinate());
-		assertEquals(6, testSubject.getYCoordinate());
+		assertEquals(4, testSubject.getLocation().getxCoordinate());
+		assertEquals(6, testSubject.getLocation().getyCoordinate());
 	}
 
 	@Test(expected = InvalidMoveException.class)
 	public void testInValidDoubleMove() {
 		chessBoard.addPiece(testSubject, 6, 6);
 		testSubject.move(MovementType.MOVE, 6, 4);
-		assertEquals(6, testSubject.getYCoordinate());
-		assertEquals(4, testSubject.getXCoordinate());
+		assertEquals(6, testSubject.getLocation().getyCoordinate());
+		assertEquals(4, testSubject.getLocation().getxCoordinate());
 	}
 
 	@Test
@@ -135,10 +135,10 @@ public class PawnTest {
 		Pawn whitePawn = new Pawn(chessBoard, PieceColor.WHITE);
 		chessBoard.addPiece(whitePawn, 1, 5);
 		whitePawn.move(MovementType.CAPTURE, 2, 6);
-		assertEquals(2, whitePawn.getXCoordinate());
-		assertEquals(6, whitePawn.getYCoordinate());
-		assertEquals(-1, blackPawn.getXCoordinate());
-		assertEquals(-1, blackPawn.getYCoordinate());
+		assertEquals(2, whitePawn.getLocation().getxCoordinate());
+		assertEquals(6, whitePawn.getLocation().getyCoordinate());
+		assertEquals(-1, blackPawn.getLocation().getxCoordinate());
+		assertEquals(-1, blackPawn.getLocation().getyCoordinate());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -146,8 +146,8 @@ public class PawnTest {
 		Pawn whitePawn = new Pawn(chessBoard, PieceColor.WHITE);
 		chessBoard.addPiece(whitePawn, 5, 1);
 		whitePawn.move(MovementType.CAPTURE, 6, 2);
-		assertEquals(6, whitePawn.getXCoordinate());
-		assertEquals(2, whitePawn.getYCoordinate());
+		assertEquals(6, whitePawn.getLocation().getxCoordinate());
+		assertEquals(2, whitePawn.getLocation().getyCoordinate());
 	}
 
 	@Test(expected = InvalidMoveException.class)
@@ -172,10 +172,10 @@ public class PawnTest {
 		whitePawn.move(MovementType.MOVE, 4, 1);
 		whitePawn.move(MovementType.MOVE, 5, 1);
 		blackPawn.move(MovementType.CAPTURE, 5, 1);
-		assertEquals(5, blackPawn.getXCoordinate());
-		assertEquals(1, blackPawn.getYCoordinate());
-		assertEquals(-1, whitePawn.getXCoordinate());
-		assertEquals(-1, whitePawn.getYCoordinate());
+		assertEquals(5, blackPawn.getLocation().getxCoordinate());
+		assertEquals(1, blackPawn.getLocation().getyCoordinate());
+		assertEquals(-1, whitePawn.getLocation().getxCoordinate());
+		assertEquals(-1, whitePawn.getLocation().getyCoordinate());
 	}
 
 	@Test(expected = InvalidMoveException.class)

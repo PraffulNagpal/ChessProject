@@ -1,16 +1,33 @@
-package com.solarwindsmsp.chess.board;
+package com.solarwindsmsp.chess.board.attribute;
 
+/**
+ * Identifies a location on board
+ */
 public class Location {
 
+	/** Identifies xCoordinates */
 	private final int xCoordinate;
+	/** Identifies yCoordinates */
 	private final int yCoordinate;
 
+	/**
+	 * Constructor of class with fields
+	 * 
+	 * @param xCoordinate of the location
+	 * @param yCoordinate of the location
+	 */
 	public Location(int xCoordinate, int yCoordinate) {
-		super();
 		this.xCoordinate = xCoordinate;
 		this.yCoordinate = yCoordinate;
 	}
-	
+
+	/**
+	 * Checks if the location is between given min and max location
+	 * 
+	 * @param min to check with
+	 * @param max to check with
+	 * @return true if this location is between given min and max
+	 */
 	public boolean isBetweenMinMax(Location min, Location max) {
 		return xCoordinate >= min.getxCoordinate() && xCoordinate <= max.getxCoordinate()
 				&& yCoordinate >= min.getyCoordinate() && yCoordinate <= max.getyCoordinate();

@@ -1,8 +1,8 @@
 package com.solarwindsmsp.chess.exception;
 
-import com.solarwindsmsp.chess.board.Location;
+import com.solarwindsmsp.chess.board.attribute.Location;
 
-public class SpotAlreadyAcquired extends RuntimeException {
+public class SquareAlreadyAcquiredException extends RuntimeException {
 
 	/**Generated serial id*/
 	private static final long serialVersionUID = 3650097428324992283L;
@@ -14,9 +14,9 @@ public class SpotAlreadyAcquired extends RuntimeException {
 	/**
 	 * Constructor for exception 
 	 * 
-	 * @param location of the spot that is acquired
+	 * @param location of the square that is acquired
 	 */
-	public SpotAlreadyAcquired(Location location) {
+	public SquareAlreadyAcquiredException(Location location) {
 		super(String.format(MESSAGE,location.getxCoordinate(),location.getyCoordinate()));
 	}
 

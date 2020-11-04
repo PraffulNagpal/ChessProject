@@ -1,6 +1,6 @@
 package com.solarwindsmsp.chess.exception;
 
-import com.solarwindsmsp.chess.board.Location;
+import com.solarwindsmsp.chess.board.attribute.Location;
 
 public class InvalidMoveException extends RuntimeException {
 

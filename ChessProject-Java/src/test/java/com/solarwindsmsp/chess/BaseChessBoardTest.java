@@ -7,12 +7,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.solarwindsmsp.chess.board.AbstractChessBoard;
-import com.solarwindsmsp.chess.board.FullGameBoard;
 import com.solarwindsmsp.chess.board.IChessBoard;
-import com.solarwindsmsp.chess.exception.SpotAlreadyAcquired;
-import com.solarwindsmsp.chess.piece.MovementType;
-import com.solarwindsmsp.chess.piece.Pawn;
-import com.solarwindsmsp.chess.piece.PieceColor;
+import com.solarwindsmsp.chess.board.impl.FullGameBoard;
+import com.solarwindsmsp.chess.exception.SquareAlreadyAcquiredException;
+import com.solarwindsmsp.chess.piece.attribute.MovementType;
+import com.solarwindsmsp.chess.piece.attribute.PieceColor;
+import com.solarwindsmsp.chess.piece.impl.Pawn;
 
 public abstract class BaseChessBoardTest {
 
@@ -58,7 +58,7 @@ public abstract class BaseChessBoardTest {
 		}
 	}
 
-	@Test(expected = SpotAlreadyAcquired.class)
+	@Test(expected = SquareAlreadyAcquiredException.class)
 	public void testThrowSpotAlreadyAcquiredIfTriedToAddPieceOnSameLocation() {
 		Pawn firstPawn = new Pawn(testSubject, PieceColor.BLACK);
 		Pawn secondPawn = new Pawn(testSubject, PieceColor.BLACK);
@@ -76,10 +76,10 @@ public abstract class BaseChessBoardTest {
 		whitePawn.move(MovementType.MOVE, 4, 1);
 		whitePawn.move(MovementType.MOVE, 5, 1);
 		testSubject.movePiece(MovementType.CAPTURE, blackPawn, 5, 1);
-		assertEquals(5, blackPawn.getXCoordinate());
-		assertEquals(1, blackPawn.getYCoordinate());
-		assertEquals(-1, whitePawn.getXCoordinate());
-		assertEquals(-1, whitePawn.getYCoordinate());
+		assertEquals(5, blackPawn.getLocation().getxCoordinate());
+		assertEquals(1, blackPawn.getLocation().getyCoordinate());
+		assertEquals(-1, whitePawn.getLocation().getxCoordinate());
+		assertEquals(-1, whitePawn.getLocation().getyCoordinate());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -99,10 +99,10 @@ public abstract class BaseChessBoardTest {
 		Pawn whitePawn = new Pawn(testSubject, PieceColor.WHITE);
 		testSubject.addPiece(whitePawn, 1, 5);
 		testSubject.movePiece(MovementType.CAPTURE, whitePawn, 2, 6);
-		assertEquals(2, whitePawn.getXCoordinate());
-		assertEquals(6, whitePawn.getYCoordinate());
-		assertEquals(-1, blackPawn.getXCoordinate());
-		assertEquals(-1, blackPawn.getYCoordinate());
+		assertEquals(2, whitePawn.getLocation().getxCoordinate());
+		assertEquals(6, whitePawn.getLocation().getyCoordinate());
+		assertEquals(-1, blackPawn.getLocation().getxCoordinate());
+		assertEquals(-1, blackPawn.getLocation().getyCoordinate());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -122,11 +122,11 @@ public abstract class BaseChessBoardTest {
 		Pawn blackPawn = new Pawn(testSubject, PieceColor.BLACK);
 		testSubject.addPiece(blackPawn, 6, 6);
 		testSubject.movePiece(MovementType.MOVE, blackPawn, 4, 6);
-		assertEquals(4, blackPawn.getXCoordinate());
-		assertEquals(6, blackPawn.getYCoordinate());
+		assertEquals(4, blackPawn.getLocation().getxCoordinate());
+		assertEquals(6, blackPawn.getLocation().getyCoordinate());
 	}
 	
-	@Test(expected = SpotAlreadyAcquired.class)
+	@Test(expected = SquareAlreadyAcquiredException.class)
 	public void testIllleagalMoveSpotAcquired() {
 		Pawn blackPawn = new Pawn(testSubject, PieceColor.BLACK);
 		Pawn blackPawn2 = new Pawn(testSubject, PieceColor.BLACK);

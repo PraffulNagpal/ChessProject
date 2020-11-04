@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.solarwindsmsp.chess.board.ReenactBoard;
-import com.solarwindsmsp.chess.piece.Pawn;
-import com.solarwindsmsp.chess.piece.PieceColor;
+import com.solarwindsmsp.chess.board.impl.ReenactBoard;
+import com.solarwindsmsp.chess.piece.attribute.PieceColor;
+import com.solarwindsmsp.chess.piece.impl.Pawn;
 
 public class ReenactBoardTest extends BaseChessBoardTest {
 	
